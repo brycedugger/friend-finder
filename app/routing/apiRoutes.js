@@ -11,12 +11,12 @@
 const express = require("express");
 const path = require("path");
 const router = express.Router();
-const data = require("../data");
+const friends = require("../friends");
 
 //displays json at /api/friends url
 
 router.get("/friends", (req, res) => {
-    return res.json(data.friends);
+    return res.json(friends.profiles);
 });
 
 //new users will be placed into this folder as well.
@@ -24,7 +24,7 @@ router.get("/friends", (req, res) => {
 
 router.post("/friends", (req, res) => {
     const user = req.body;
-    data.friends.push(user)
+    friends.profiles.push(user)
 });
 
 module.exports = router;
