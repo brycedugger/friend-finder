@@ -11,4 +11,6 @@ app.use(express.json());
 app.use("/", require("./app/routing/htmlRoutes"));
 app.use("/api", require("./app/routing/apiRoutes"));
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+app.listen(PORT, function() {
+    console.log("App listening on PORT: " + PORT);
+  });

@@ -149,13 +149,18 @@
                                 <option class="text-dark bg-light" value="5">5 (Strongly Agree)</option>
                             </select>
 
-                            <button type="submit" class="btn btn-primary submit" data-toggle="modal" data-target="#bestMatchModal">Submit</button>
+                            <button type="submit" class="btn btn-primary submit">Submit</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bestMatchModal">
+    Launch demo modal
+</button>
   
   <!-- Modal -->
   <div class="modal fade" id="bestMatchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -182,6 +187,31 @@
 <script type="text/javascript">
 
 //check answers if all forms filled out.
+
+$("#submit").on("click", (e) => {
+            e.preventDefault();
+            // // check to make sure user completed the form
+            // if (!$('#name').val() || !$('#photo').val() || !checkQuestions()) {
+            //     alert('You must finish the form.');
+            // }
+            // else {
+            //     const newProfile = createNewProfile();
+            //     // post the new profile to the server
+            //     axios.post('/api/friends', { profile: newProfile })
+            //         .then(res => {
+            //             console.log('Profile successsfully created.');
+            //         }), (err) => {
+            //             console.log(err);
+            //         }
+            //     // render modal with the matched profile
+            //     axios.get(`/api/friends/${newProfile.scoreTotal}`)
+            //         .then(res => {
+            //             renderModal(res.data);
+            //         }), (err) => {
+            //             console.log(err);
+            //         }
+            // }
+        });
 
 //if all forms filled out, append all values to an array called userAnswers
 
