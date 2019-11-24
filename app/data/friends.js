@@ -108,5 +108,4 @@ var friends =
 
 var bestMatch = [];
 
-module.exports = friends;
-module.exports = bestMatch;
+module.exports = {friends, bestMatch};

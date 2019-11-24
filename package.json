@@ -1,19 +1,28 @@
 {
-  "name": "15-HotRestaurant",
+  "name": "friend-finder",
   "version": "1.0.0",
-  "description": "* Description: Basic app demonstrating Node and Express with jQuery. Overall purpose is to help schedule reservation requests. Restaurant has just 5 tables available. First five requests get a reservation, every request after that is sent to the waiting list.\r * Live Demo: <https://hot-restaurant-fsf.herokuapp.com/>",
-  "main": "app.js",
+  "description": "",
+  "main": "server.js",
   "scripts": {
     "start": "node server",
     "dev": "nodemon server"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brycedugger/friend-finder.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brycedugger/friend-finder/issues"
+  },
+  "homepage": "https://github.com/brycedugger/friend-finder#readme",
   "dependencies": {
-    "data": "^0.6.1",
     "express": "^4.17.1",
-    "nodemon": "^1.19.4",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
   }
 }

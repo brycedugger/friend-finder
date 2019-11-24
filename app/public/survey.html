@@ -180,12 +180,13 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 
+<script src="https://code.jquery.com/jquery.js"></script>
 
 <script type="text/javascript">
 
     $(".submit").on("click", function (event) {
         event.preventDefault();
-
+        console.log()
         var userInfo = {
             name: $("#name").val().trim(),
             photo: $("#photo").val().trim(),
@@ -225,25 +226,20 @@
             for (let i = 0; i < inputs.length; i++) {
                 userInfo.scores.push(parseInt($(inputs[i]).val()));
             }
+            post();
+        };
 
-        }
-        console.log (userInfo.scores);
-
-        //send user array to friends.js for perminant profile archive.
-
-        // This line is the magic. It"s very similar to the standard ajax function we used.
-        // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
-        // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-        // depending on if a tables is available or not.
-
-        $.post("/api/friends", userInfo,
-            function (data) {
-                runBestMatch();
-            });
+        function post() {
+            console.log('post is called:', userInfo);
+            
+            $.post("/api/friends", {userInfo},
+                function (data) {
+                    // runBestMatch();
+                });
+        };
 
 
         function runBestMatch() {
-
             // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
             $.ajax({ url: "/api/friends", method: "GET" })
                 .then(function (bestMatch) {
