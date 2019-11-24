@@ -1,30 +1,31 @@
-// 4. Your `apiRoutes.js` file should contain two routes:
+var friends = require("../data/friends");
 
-// * A GET route with the url `/api/friends`. This
-//will be used to display a JSON of all possible 
-//friends.
+module.exports = function (app) {
 
-// * A POST routes `/api/friends`. This will be used
-//to handle incoming survey results. This route will
-//also be used to handle the compatibility logic.
+  app.get("/api/friends", function (req, res) {
+    res.json(friends);
+  });
 
-const express = require("express");
-const path = require("path");
-const router = express.Router();
-const friends = require("../friends");
+  app.post("/api/friends", function (req, res) {
 
-//displays json at /api/friends url
+    var userResponse = req.body
+    var userScore = req.body.scores
 
-router.get("/friends", (req, res) => {
-    return res.json(friends.profiles);
-});
+    friends.push(userResponse);
 
-//new users will be placed into this folder as well.
-//new users will be dropped when a new server is created.
+    calcArray = [];
 
-router.post("/friends", (req, res) => {
-    const user = req.body;
-    friends.profiles.push(user)
-});
+    for (i=0; i = friends.length-1; i++) {
+      for (i = 0; i = userScore.length; i++){
+        var calc = (Math.abs(userScore[i] - friends.score [i]));
+        return calc;
+      }
+    calcArray.push(calc);
+    }
+    //what value of calc array is the lowest?
 
-module.exports = router;
+    var friendMatch = calcArray.indexOf(Math.min(calcArray), 0);
+
+    bestMatch.push(friends[friendMatch]);
+  })
+};

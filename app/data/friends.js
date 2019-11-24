@@ -3,8 +3,8 @@
 // Each of these objects should roughly follow the 
 // format below.
 
-const profiles = {
-    friends: [
+var friends =
+    [
         {
             name: "Ahmed",
             photo: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
@@ -103,8 +103,10 @@ const profiles = {
                 4,
                 5
             ],
-        },
-    ]
-};
+        }
+    ];
 
-module.exports = profiles;
+var bestMatch = [];
+
+module.exports = friends;
+module.exports = bestMatch;

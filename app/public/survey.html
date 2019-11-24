@@ -1,4 +1,3 @@
-  
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>MAKE RESERVATION</title>
+    <title>Friend Finder - Survey</title>
     <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 
@@ -128,7 +127,8 @@
                             </select>
 
                             <h3 class="font-weight-bold">Question 9</h3>
-                            <h6>You think that everyone's view should be respected regardless of whether they are supported by facts or not.</h6>
+                            <h6>You think that everyone's view should be respected regardless of whether they are
+                                supported by facts or not.</h6>
                             <select class="form-control bg-dark text-light w-50 question" id="q8">
                                 <option class="text-dark bg-light" value="0">Select</option>
                                 <option class="text-dark bg-light" value="1">1 (Strongly Disagree)</option>
@@ -149,84 +149,112 @@
                                 <option class="text-dark bg-light" value="5">5 (Strongly Agree)</option>
                             </select>
 
-                            <button type="submit" class="btn btn-primary submit">Submit</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <button type="submit" class="btn btn-primary submit">Submit</button>
+        <div class="card mt-4">
+            <div class="card-header">
+              <h4>Best Friend</h4>
+            </div>
+            <div class="card-body">
+              <ul id="bestMatch" class="card-body"></ul>
+            </div>
+          </div>
     </div>
 
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bestMatchModal">
-    Launch demo modal
-</button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="bestMatchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
 </body>
-<script src="https://code.jquery.com/jquery.js"></script>
-<script type="text/javascript">
-
-//check answers if all forms filled out.
-
-$("#submit").on("click", (e) => {
-            e.preventDefault();
-            // // check to make sure user completed the form
-            // if (!$('#name').val() || !$('#photo').val() || !checkQuestions()) {
-            //     alert('You must finish the form.');
-            // }
-            // else {
-            //     const newProfile = createNewProfile();
-            //     // post the new profile to the server
-            //     axios.post('/api/friends', { profile: newProfile })
-            //         .then(res => {
-            //             console.log('Profile successsfully created.');
-            //         }), (err) => {
-            //             console.log(err);
-            //         }
-            //     // render modal with the matched profile
-            //     axios.get(`/api/friends/${newProfile.scoreTotal}`)
-            //         .then(res => {
-            //             renderModal(res.data);
-            //         }), (err) => {
-            //             console.log(err);
-            //         }
-            // }
-        });
-
-//if all forms filled out, append all values to an array called userAnswers
-
-//send user array to friends.js for perminant profile archive.
-
-//compare userAnswers array to all other friend's array to calculate difference. all profiles[i] - 1
-
-//send user array to friends.js for perminant profile archive.
-
-//bring modal up front with profile match. provide x out. pull from portfolio'
-//starwars view.html is how we view the information and add it to the modal.
-
-//Clearing form data not rquired. will happen upon refresh of page.
-
-
-</script>
 
 </html>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+
+    $(".submit").on("click", function (event) {
+        event.preventDefault();
+
+        var userInfo = {
+            name: $("#name").val().trim(),
+            photo: $("#photo").val().trim(),
+            scores: []
+        };
+        console.log(userInfo);
+
+        function checkQuestions () {
+            var inputs = $('.question');
+            for (let i = 0; i < inputs.length; i++) {
+                if (parseInt($(inputs[i]).val()) === 0) {
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        function checkForm() {
+            //if all forms filled out, append all values to an array called userAnswers
+            if (!$('#name').val() || !$('#photo').val() || !checkQuestions()) {
+                alert("You missed something! Please complete the form.")
+            }
+            else {
+                newUser();
+            }
+
+        };
+
+        checkForm();
+
+        //if all forms filled out, append all values to an object called userInfo
+
+        function newUser() {
+            // grabs the scores and store them in score array
+            var inputs = $('.question');
+            // loop through scores array and add them to the score array and calc total score
+            for (let i = 0; i < inputs.length; i++) {
+                userInfo.scores.push(parseInt($(inputs[i]).val()));
+            }
+
+        }
+        console.log (userInfo.scores);
+
+        //send user array to friends.js for perminant profile archive.
+
+        // This line is the magic. It"s very similar to the standard ajax function we used.
+        // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
+        // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
+        // depending on if a tables is available or not.
+
+        $.post("/api/friends", userInfo,
+            function (data) {
+                runBestMatch();
+            });
+
+
+        function runBestMatch() {
+
+            // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
+            $.ajax({ url: "/api/friends", method: "GET" })
+                .then(function (bestMatch) {
+
+                    $("#bestMatch").append(
+                        $("<h2>").text("Name: " + bestMatch.name),
+                        $("<img>", { class: 'p-5 mx-auto profile-photo', src: bestMatch.photo })
+                    );
+            })
+        };
+
+    });
+
+</script>
