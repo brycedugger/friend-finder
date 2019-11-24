@@ -3,11 +3,12 @@
 // Each of these objects should roughly follow the 
 // format below.
 
+
 var friends =
     [
         {
             name: "Ahmed",
-            photo: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+            photo: "https://avatars2.githubusercontent.com/u/8504998?v=3&s=460",
             scores: [
                 5,
                 1,
@@ -106,6 +107,5 @@ var friends =
         }
     ];
 
-var bestMatch = [];
 
-module.exports = {friends, bestMatch};
+module.exports = {friends};

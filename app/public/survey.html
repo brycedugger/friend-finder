@@ -157,7 +157,7 @@
         <button type="submit" class="btn btn-primary submit">Submit</button>
         <div class="card mt-4">
             <div class="card-header">
-              <h4>Best Friend</h4>
+              <h4>Best Friend:</h4>
             </div>
             <div class="card-body">
               <ul id="bestMatch" class="card-body"></ul>
@@ -230,23 +230,22 @@
         };
 
         function post() {
-            console.log('post is called:', userInfo);
-            
+        
             $.post("/api/friends", {userInfo},
                 function (data) {
-                    // runBestMatch();
+                    runBestMatch(data.name, data.photo);
                 });
         };
 
 
-        function runBestMatch() {
+        function runBestMatch(name, photo) {
             // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
             $.ajax({ url: "/api/friends", method: "GET" })
                 .then(function (bestMatch) {
 
                     $("#bestMatch").append(
-                        $("<h2>").text("Name: " + bestMatch.name),
-                        $("<img>", { class: 'p-5 mx-auto profile-photo', src: bestMatch.photo })
+                        $("<h2>").text("Name: " + name),
+                        $("<img>", { class: 'p-5 mx-auto profile-photo', src: photo })
                     );
             })
         };
